@@ -3,9 +3,6 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-img{width: 100px}
-</style>
     <h1>Liste des produits</h1>
 
     <table class="table">
@@ -17,22 +14,19 @@ img{width: 100px}
                 <th>Prix</th>
                 <th>Stock</th>
                 <th>Photo</th>
-                <th>actions</th>
+                
             </tr>
         </thead>
         <tbody>
         {% for produit in produits %}
             <tr>
                 <td>{{ produit.id }}</td>
-                <td><a href="{{path('produit_show', {'id':produit.id})}}"{{ produit.Nom }}</a></td>
+                <td><a href="{{path('produit_show', {'id':produit.id})}}">{{ produit.Nom }}</a></td>
                 <td>{{ produit.Description }}</td>
                 <td>{{ produit.Prix }}</td>
                 <td>{{ produit.Stock }}</td>
                 <td><img src="{{ asset('/uploads/' ~ produit.photo) }}"></td>
-                <td>
-                    <a href="{{ path('produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
-                </td>
+                
             </tr>
         {% else %}
             <tr>

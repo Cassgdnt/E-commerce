@@ -26,11 +26,19 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('pays');
         }
 
-        if( $user->hasRole('ROLE_ADMIN') ){
-            $user->setRoles( ['ROLE_USER'] );
+        if( $user->hasRole('ROLE_USER') ) {
+            $user->setRoles( ['ROLE_ADMIN'] );
         }
+
+        if($user->hasRole('ROLE_ADMIN')) {
+            $user->setRoles(['ROLE_SUPERADMIN']);
+        }
+        if($user->hasRole('ROLE_SUPERADMIN')){
+            $user->setRoles(['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPERADMIN']);
+        }
+
         else{
-            $user->setRoles( ['ROLE_USER', 'ROLE_ADMIN'] );
+            $user->setRoles( ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPERADMIN'] );
         }
         
         $em = $this->getDoctrine()->getManager();
@@ -38,7 +46,7 @@ class AdminController extends AbstractController
         $em->flush();
 
         $this->addFlash("success", "Role modifié");
-        return $this->redirectToRoute('produit_index');
+        return $this->redirectToRoute('users');
     }
 
     /**

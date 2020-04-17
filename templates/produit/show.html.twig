@@ -8,10 +8,6 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
                 <th>Nom</th>
                 <td>{{ produit.Nom }}</td>
             </tr>
@@ -21,7 +17,7 @@
             </tr>
             <tr>
                 <th>Prix</th>
-                <td>{{ produit.Prix }}</td>
+                <td>{{ produit.Prix }} €</td>
             </tr>
             <tr>
                 <th>Stock</th>
@@ -29,14 +25,20 @@
             </tr>
             <tr>
                 <th>Photo</th>
-                <td>{{ produit.Photo }}</td>
+                <td><img src="{{ asset('/uploads/' ~ produit.photo) }}"></td>
             </tr>
+            <tr>
         </tbody>
     </table>
-
-    <a href="{{ path('produit_index') }}">back to list</a>
-
-    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
-
+    {% if is_granted('ROLE_USER') %}
+<button class="btn btn-outline-success">Ajouter le produit au panier</button>
+<br>
+    {% endif %}
+<button class="btn btn-outline-secondary"><a href="{{ path('produit_index') }}">Retour à la liste des produits</a></button>
+{% if is_granted('ROLE_ADMIN') %}
+    <button class="btn btn-outline-secondary">Editer le produit</button>
     {{ include('produit/_delete_form.html.twig') }}
+{% endif %}
+
+
 {% endblock %}
