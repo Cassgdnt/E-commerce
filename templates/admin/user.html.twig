@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	{% if users is not empty %}
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Roles</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{ user.email }}</td>
+						<td>{{ user.roles|join(', ') }}</td>
+						<td>
+							<a href="{{ path('editRole', {'id': user.id}) }}">
+								Changer le rôle
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>Il n'y a aucun utilisateur</p>
+	{% endif %}
+
+{% endblock %}

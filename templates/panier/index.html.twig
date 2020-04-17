@@ -3,15 +3,15 @@
 {% block title %}Panier index{% endblock %}
 
 {% block body %}
-    <h1>Panier index</h1>
+    <h1>Liste des paniers</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Date_achat</th>
+                <th>Date d'achat</th>
                 <th>Etat</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,11 +27,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun panier </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('panier_new') }}">Create new</a>
+    <a href="{{ path('panier_new') }}">Créer un nouveau panier</a>
 {% endblock %}

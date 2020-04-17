@@ -12,7 +12,7 @@
                 <td>{{ panier.id }}</td>
             </tr>
             <tr>
-                <th>Date_achat</th>
+                <th>Date d'achat</th>
                 <td>{{ panier.DateAchat ? panier.DateAchat|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -22,9 +22,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('panier_index') }}">back to list</a>
+    <a href="{{ path('panier_index') }}">retour à la liste des paniers</a>
 
-    <a href="{{ path('panier_edit', {'id': panier.id}) }}">edit</a>
+    <a href="{{ path('panier_edit', {'id': panier.id}) }}">Editer le panier</a>
 
     {{ include('panier/_delete_form.html.twig') }}
 {% endblock %}

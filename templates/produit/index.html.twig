@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit index{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Produit index</h1>
+<style>
+img{width: 100px}
+</style>
+    <h1>Liste des produits</h1>
 
     <table class="table">
         <thead>
@@ -21,11 +24,11 @@
         {% for produit in produits %}
             <tr>
                 <td>{{ produit.id }}</td>
-                <td>{{ produit.Nom }}</td>
+                <td><a href="{{path('produit_show', {'id':produit.id})}}"{{ produit.Nom }}</a></td>
                 <td>{{ produit.Description }}</td>
                 <td>{{ produit.Prix }}</td>
                 <td>{{ produit.Stock }}</td>
-                <td>{{ produit.Photo }}</td>
+                <td><img src="{{ asset('/uploads/' ~ produit.photo) }}"></td>
                 <td>
                     <a href="{{ path('produit_show', {'id': produit.id}) }}">show</a>
                     <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
@@ -33,11 +36,12 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun produit existants</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('produit_new') }}">Create new</a>
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('produit_new') }}">Creer un nouveau produit</a>
+{% endif %}
 {% endblock %}
