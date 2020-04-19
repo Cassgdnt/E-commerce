@@ -73,8 +73,14 @@ img{width: 100px}
             {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
             <a class="nav-link" href="{{path('admin')}}">Admin</a>
-            <li>
+            </li>
             {% endif %}
+        {% if is_granted('ROLE_USER') %}
+        <li class="nav-item">
+        <a class="nav-link" href="{{path('profil')}}">Profil</a>
+        </li>
+        {% endif %}
+        
         {% endif %}
                     </li>
                 </ul>

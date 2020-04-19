@@ -3,15 +3,16 @@
 {% block title %}Panier index{% endblock %}
 
 {% block body %}
-    <h1>Liste des paniers</h1>
+    <h1>Liste des produit dans le panier</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Date d'achat</th>
-                <th>Etat</th>
-                <th>Actions</th>
+                <th>Nom</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th>Montant total</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -20,18 +21,15 @@
                 <td>{{ panier.id }}</td>
                 <td>{{ panier.DateAchat ? panier.DateAchat|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ panier.Etat ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('panier_show', {'id': panier.id}) }}">show</a>
-                    <a href="{{ path('panier_edit', {'id': panier.id}) }}">edit</a>
-                </td>
+                <td>Supprimer le produit</td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">Aucun panier </td>
+                <td colspan="4">Aucun produit dans le panier </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('panier_new') }}">Créer un nouveau panier</a>
+    <a href="#">Payer</a>
 {% endblock %}
