@@ -31,7 +31,7 @@ class ContenuPanier
     /**
      * @ORM\Column(type="integer")
      */
-    private $Quantité;
+    private $Quantite;
 
     /**
      * @ORM\Column(type="datetime")
@@ -106,14 +106,14 @@ class ContenuPanier
         return $this;
     }
 
-    public function getQuantité(): ?int
+    public function getQuantite(): ?int
     {
-        return $this->Quantité;
+        return $this->Quantite;
     }
 
-    public function setQuantité(int $Quantité): self
+    public function setQuantite(int $Quantite): self
     {
-        $this->Quantité = $Quantité;
+        $this->Quantite = $Quantite;
 
         return $this;
     }
