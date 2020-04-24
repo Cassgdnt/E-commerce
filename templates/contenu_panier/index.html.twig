@@ -18,7 +18,7 @@
         {% for contenu_panier in contenu_paniers %}
             <tr>
                 <td>{{ contenu_panier.id }}</td>
-                <td>{{ contenu_panier.Quantité }}</td>
+                <td>{{ contenu_panier.Quantite }}</td>
                 <td>{{ contenu_panier.Date ? contenu_panier.Date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('contenu_panier_show', {'id': contenu_panier.id}) }}">show</a>
