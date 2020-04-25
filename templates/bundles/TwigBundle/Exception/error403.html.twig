@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="jumbotron">
+	<div class="container text-center">
+	<h1> Oops erreur 403 </h1>
+	<p> <h2>{{ status_code }} - {{ status_text }}</h2> </p>
+	<h3> Vous n'avez pas le droit d'être là </h3>
+	</br>
+	<p> <a href="{{ path ("produit_index") }}" class="btn btn-primary"> Home </a> </p>
+	</div>
+	</div>
+
+	
+{% endblock %}
