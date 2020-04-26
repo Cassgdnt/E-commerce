@@ -1,43 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit index{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Produit index</h1>
+    <h1>{{'Produit.Liste' |trans}}</h1>
 
     <table class="table">
-        <thead>
+        <thead class="thead-dark">
             <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Stock</th>
-                <th>Photo</th>
-                <th>actions</th>
+                <th>{{'Produit.Nom' |trans}} </th>
+                <th>{{'Produit.Description' |trans}} </th>
+                <th>{{'Produit.Prix' |trans}} </th>
+                <th>{{'Produit.Stock' |trans}} </th>
+                <th>{{'Produit.Photo' |trans}} </th>
+                
             </tr>
         </thead>
         <tbody>
         {% for produit in produits %}
             <tr>
-                <td>{{ produit.id }}</td>
-                <td>{{ produit.Nom }}</td>
+                <td><a href="{{path('produit_show', {'id':produit.id})}}">{{ produit.Nom }}</a></td>
                 <td>{{ produit.Description }}</td>
                 <td>{{ produit.Prix }}</td>
                 <td>{{ produit.Stock }}</td>
-                <td>{{ produit.Photo }}</td>
-                <td>
-                    <a href="{{ path('produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
-                </td>
+                <td><img src="{{ asset('/uploads/' ~ produit.photo) }}"></td>
+                
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">{{'Produit.Aucun' |trans}} </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('produit_new') }}">Create new</a>
+{% if is_granted('ROLE_ADMIN') %}
+    <button class="btn btn-outline-secondary"><a href="{{ path('produit_new') }}">{{'Produit.Nouveau' |trans}} </a></button>
+{% endif %}
 {% endblock %}

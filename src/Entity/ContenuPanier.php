@@ -18,10 +18,6 @@ class ContenuPanier
      */
     private $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Produit", inversedBy="contenuPaniers")
-     */
-    private $Produit;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Panier", mappedBy="contenuPanier")
@@ -31,16 +27,21 @@ class ContenuPanier
     /**
      * @ORM\Column(type="integer")
      */
-    private $Quantité;
+    private $Quantite;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $Date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="ContenuPanier")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $produit;
+
     public function __construct()
     {
-        $this->Produit = new ArrayCollection();
         $this->Panier = new ArrayCollection();
     }
 
@@ -49,31 +50,6 @@ class ContenuPanier
         return $this->id;
     }
 
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduit(): Collection
-    {
-        return $this->Produit;
-    }
-
-    public function addProduit(Produit $produit): self
-    {
-        if (!$this->Produit->contains($produit)) {
-            $this->Produit[] = $produit;
-        }
-
-        return $this;
-    }
-
-    public function removeProduit(Produit $produit): self
-    {
-        if ($this->Produit->contains($produit)) {
-            $this->Produit->removeElement($produit);
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Panier[]
@@ -106,14 +82,14 @@ class ContenuPanier
         return $this;
     }
 
-    public function getQuantité(): ?int
+    public function getQuantite(): ?int
     {
-        return $this->Quantité;
+        return $this->Quantite;
     }
 
-    public function setQuantité(int $Quantité): self
+    public function setQuantite(int $Quantite): self
     {
-        $this->Quantité = $Quantité;
+        $this->Quantite = $Quantite;
 
         return $this;
     }
@@ -126,6 +102,18 @@ class ContenuPanier
     public function setDate(\DateTimeInterface $Date): self
     {
         $this->Date = $Date;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }

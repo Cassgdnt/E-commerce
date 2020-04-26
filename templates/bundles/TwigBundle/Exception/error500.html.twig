@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="jumbotron">
+	<div class="container text-center">
+	<h1>{{'Error.Error500' |trans}}  </h1>
+	<p> <h2>{{ status_code }} - {{ status_text }}</h2> </p>
+	<h3> {{'Error.Message500' |trans}}  </h3>
+	</br>
+	<p> <a href="{{ path ("produit_index") }}" class="btn btn-primary">{{'Error.Retour' |trans}} </a> </p>
+	</div>
+	</div>
+
+	
+{% endblock %}

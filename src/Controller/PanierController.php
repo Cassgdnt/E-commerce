@@ -2,14 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\ContenuPanier;
 use App\Entity\Panier;
+use App\Entity\Produit;
 use App\Form\PanierType;
+use App\Repository\ContenuPanierRepository;
 use App\Repository\PanierRepository;
+use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+/**
+ * @Route("/{_locale}")
+ */
 /**
  * @Route("/panier")
  */
@@ -18,36 +24,14 @@ class PanierController extends AbstractController
     /**
      * @Route("/", name="panier_index", methods={"GET"})
      */
-    public function index(PanierRepository $panierRepository): Response
-    {
+    public function index(PanierRepository $panierRepository, ContenuPanierRepository $contenuPanierRepo): Response
+    {   
+        $panier = $panierRepository->findOneBy(['Utilisateur' => $this->getUser(), 'Etat' => false]);
+        $contenuPanier= $contenuPanierRepo->findAll();
         return $this->render('panier/index.html.twig', [
-            'paniers' => $panierRepository->findAll(),
+            'paniers' => $panierRepository->findAll()
         ]);
     }
-
-    /**
-     * @Route("/new", name="panier_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $panier = new Panier();
-        $form = $this->createForm(PanierType::class, $panier);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($panier);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('panier_index');
-        }
-
-        return $this->render('panier/new.html.twig', [
-            'panier' => $panier,
-            'form' => $form->createView(),
-        ]);
-    }
-
     /**
      * @Route("/{id}", name="panier_show", methods={"GET"})
      */
@@ -57,25 +41,20 @@ class PanierController extends AbstractController
             'panier' => $panier,
         ]);
     }
-
     /**
-     * @Route("/{id}/edit", name="panier_edit", methods={"GET","POST"})
+     * @Route("/panier/achat", name="achat_panier")
      */
-    public function edit(Request $request, Panier $panier): Response
+    public function edit(Request $request, Panier $panier, PanierRepository $panierRepository): Response
     {
-        $form = $this->createForm(PanierType::class, $panier);
-        $form->handleRequest($request);
+        $panier = $panierRepository ->findOneBy(['user' => $this->getUser(), 'status' => false]);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('panier_index');
-        }
-
-        return $this->render('panier/edit.html.twig', [
-            'panier' => $panier,
-            'form' => $form->createView(),
-        ]);
+        $panier
+            ->setEtat(true)
+            ->setDateAchat(new \DateTime());
+        $em->persist($panier);
+        $em->flush();
+        return $this->redirectToRoute('produit_index');
     }
 
     /**
@@ -87,8 +66,8 @@ class PanierController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($panier);
             $entityManager->flush();
+             $this->addFlash("success", "Produit supprimé");
         }
-
         return $this->redirectToRoute('panier_index');
     }
 }

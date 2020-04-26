@@ -3,40 +3,42 @@
 {% block title %}Produit{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
+    <h1>{{'Produit.Produit'|trans}}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
+                <th>{{'Produit.Nom' |trans}} </th>
                 <td>{{ produit.Nom }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>{{'Produit.Description' |trans}} </th>
                 <td>{{ produit.Description }}</td>
             </tr>
             <tr>
-                <th>Prix</th>
-                <td>{{ produit.Prix }}</td>
+                <th>{{'Produit.Prix' |trans}} </th>
+                <td>{{ produit.Prix }} €</td>
             </tr>
             <tr>
-                <th>Stock</th>
+                <th>{{'Produit.Stock' |trans}} </th>
                 <td>{{ produit.Stock }}</td>
             </tr>
             <tr>
-                <th>Photo</th>
-                <td>{{ produit.Photo }}</td>
+                <th>{{'Produit.Photo' |trans}} </th>
+                <td><img src="{{ asset('/uploads/' ~ produit.photo) }}"></td>
             </tr>
+            <tr>
         </tbody>
     </table>
-
-    <a href="{{ path('produit_index') }}">back to list</a>
-
-    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
-
+    {% if is_granted('ROLE_USER') %}
+    <button class="btn btn-outline-secondary"><a href="{{path('add', {'id':produit.id})}}">{{'Produit.Ajout' |trans}}</a></button>
+<br>
+    {% endif %}
+<button class="btn btn-outline-secondary"><a href="{{ path('produit_index') }}">{{'Produit.Retour' |trans}}</a></button>
+{% if is_granted('ROLE_ADMIN') %}
+    <button class="btn btn-outline-secondary"><a href="{{path('produit_edit', {'id':produit.id})}}">{{'Produit.Edit' |trans}}</a></button>
     {{ include('produit/_delete_form.html.twig') }}
+{% endif %}
+
+
 {% endblock %}

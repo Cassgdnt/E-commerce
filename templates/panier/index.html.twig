@@ -3,35 +3,30 @@
 {% block title %}Panier index{% endblock %}
 
 {% block body %}
-    <h1>Panier index</h1>
+    <h1>{{'Panier.Titre' |trans}} </h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Date_achat</th>
-                <th>Etat</th>
-                <th>actions</th>
+                <th>{{'Panier.Nom' |trans}}</th>
+                <th>{{'Panier.Quantite' |trans}}</th>
+                <th>{{'Panier.Prix' |trans}}</th>
+                <th>{{'Panier.Montant' |trans}}</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for panier in paniers %}
-            <tr>
-                <td>{{ panier.id }}</td>
-                <td>{{ panier.DateAchat ? panier.DateAchat|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ panier.Etat ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('panier_show', {'id': panier.id}) }}">show</a>
-                    <a href="{{ path('panier_edit', {'id': panier.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+        <pre>
+            {{ dump(panier) }}
+        </pre>
+                <p>{{'Panier.Utilisateur' |trans}}  {{panier.Utilisateur.Nom}} {{panier.Utilisateur.Prenom}}</p>
         {% endfor %}
+            <tr>
+                <td colspan="4">{{'Panier.Aucun' |trans}}  </td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('panier_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{path('achat_panier')}}">{{'Panier.Achat' |trans}} </a>
 {% endblock %}

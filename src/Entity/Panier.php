@@ -23,7 +23,7 @@ class Panier
     private $Utilisateur;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $Date_achat;
 

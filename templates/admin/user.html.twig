@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+#roles{
+	text-decoration: underline;
+}
+</style>
+	{% if users is not empty %}
+	<h2 id="roles">{{'Admin.Changer' |trans}} </h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>{{'Admin.Email' |trans}} </th>
+					<th>{{'Admin.Roles' |trans}} </th>
+					<th>{{'Admin.Action' |trans}} </th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{ user.email }}</td>
+						<td>{{ user.roles|join(', ') }}</td>
+						<td>
+							<button class="btn btn-outline-secondary"><a href="{{ path('editRole', {'id': user.id}) }}">
+								{{'Admin.Btn' |trans}} 
+							</a></button>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>{{'Admin.Aucun' |trans}} </p>
+	{% endif %}
+
+{% endblock %}

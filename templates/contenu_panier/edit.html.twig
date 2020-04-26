@@ -3,11 +3,11 @@
 {% block title %}Edit ContenuPanier{% endblock %}
 
 {% block body %}
-    <h1>Edit ContenuPanier</h1>
+    <h1>Edition ContenuPanier</h1>
 
     {{ include('contenu_panier/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('contenu_panier_index') }}">back to list</a>
+    <a href="{{ path('contenu_panier_index') }}">retour à la liste des contenu panier</a>
 
     {{ include('contenu_panier/_delete_form.html.twig') }}
 {% endblock %}

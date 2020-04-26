@@ -44,14 +44,15 @@ class Produit
     private $Photo;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ContenuPanier", mappedBy="Produit")
+     * @ORM\OneToMany(targetEntity="App\Entity\ContenuPanier", mappedBy="produit")
      */
-    private $contenuPaniers;
+    private $ContenuPanier;
 
     public function __construct()
     {
-        $this->contenuPaniers = new ArrayCollection();
+        $this->ContenuPanier = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -118,19 +119,23 @@ class Produit
         return $this;
     }
 
+    public function __toString(){
+        return $this-> getPhoto();
+    }
+
     /**
      * @return Collection|ContenuPanier[]
      */
-    public function getContenuPaniers(): Collection
+    public function getContenuPanier(): Collection
     {
-        return $this->contenuPaniers;
+        return $this->ContenuPanier;
     }
 
     public function addContenuPanier(ContenuPanier $contenuPanier): self
     {
-        if (!$this->contenuPaniers->contains($contenuPanier)) {
-            $this->contenuPaniers[] = $contenuPanier;
-            $contenuPanier->addProduit($this);
+        if (!$this->ContenuPanier->contains($contenuPanier)) {
+            $this->ContenuPanier[] = $contenuPanier;
+            $contenuPanier->setProduit($this);
         }
 
         return $this;
@@ -138,9 +143,12 @@ class Produit
 
     public function removeContenuPanier(ContenuPanier $contenuPanier): self
     {
-        if ($this->contenuPaniers->contains($contenuPanier)) {
-            $this->contenuPaniers->removeElement($contenuPanier);
-            $contenuPanier->removeProduit($this);
+        if ($this->ContenuPanier->contains($contenuPanier)) {
+            $this->ContenuPanier->removeElement($contenuPanier);
+            // set the owning side to null (unless already changed)
+            if ($contenuPanier->getProduit() === $this) {
+                $contenuPanier->setProduit(null);
+            }
         }
 
         return $this;
