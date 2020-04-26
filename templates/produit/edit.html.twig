@@ -7,7 +7,7 @@
 
     {{ include('produit/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('produit_index') }}">back to list</a>
+    <button class="btn btn-outline-secondary"><a href="{{ path('produit_index') }}">{{'Produit.Retour'|trans}}</a></button>
 
     {{ include('produit/_delete_form.html.twig') }}
 {% endblock %}

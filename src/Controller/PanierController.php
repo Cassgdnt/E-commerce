@@ -66,8 +66,8 @@ class PanierController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($panier);
             $entityManager->flush();
+             $this->addFlash("success", "Produit supprimé");
         }
-
         return $this->redirectToRoute('panier_index');
     }
 }

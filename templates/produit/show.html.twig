@@ -31,12 +31,12 @@
         </tbody>
     </table>
     {% if is_granted('ROLE_USER') %}
-    <a href="{{path('add', {'id':produit.id})}}">{{'Produit.Ajout' |trans}}</a>
+    <button class="btn btn-outline-secondary"><a href="{{path('add', {'id':produit.id})}}">{{'Produit.Ajout' |trans}}</a></button>
 <br>
     {% endif %}
 <button class="btn btn-outline-secondary"><a href="{{ path('produit_index') }}">{{'Produit.Retour' |trans}}</a></button>
 {% if is_granted('ROLE_ADMIN') %}
-    <button class="btn btn-outline-secondary">{{'Produit.Edit' |trans}}</button>
+    <button class="btn btn-outline-secondary"><a href="{{path('produit_edit', {'id':produit.id})}}">{{'Produit.Edit' |trans}}</a></button>
     {{ include('produit/_delete_form.html.twig') }}
 {% endif %}
 

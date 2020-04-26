@@ -34,14 +34,14 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - {path:^/admin/user , roles: ROLE_ADMIN}
-         # - {path:^/admin/index, roles:ROLE_SUPERADMIN }
-        # - {path:^/contenu_panier/index, roles:ROLE_USER }
-        # - {path:^/contenu_panier/edit, roles:ROLE_USER }
-        # - {path:^/contenu_panier/edit , roles:ROLE_USER }
-        # - {path:^/panier/index , roles:ROLE_USER }
-        # - {path:^/panier/show, roles:ROLE_USER }
-        # - { path: ^/produit/new, roles:ROLE_ADMIN}
-        # - { path: ^/produit/edit, roles: ROLE_ADMIN}
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - {path: '^/admin/user', roles: ROLE_ADMIN}
+        - {path: '^/admin/index', roles: ROLE_SUPERADMIN }
+        - {path: '^/contenu_panier/index', roles: ROLE_USER }
+        - {path: '^/contenu_panier/edit', roles: ROLE_USER }
+        - {path: '^/contenu_panier/edit' , roles: ROLE_USER }
+        - {path: '^/panier/index' , roles: ROLE_USER }
+        - {path: '^/panier/show', roles: ROLE_USER }
+        - {path: '^/produit/new', roles: ROLE_ADMIN}
+        - {path: '^/produit/edit', roles: ROLE_ADMIN}
+        - {path: '^/admin', roles: ROLE_ADMIN }
+        - {path: '^/profile', roles: ROLE_USER }
