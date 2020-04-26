@@ -3,17 +3,16 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Liste des produits</h1>
+    <h1>{{'Produit.Liste' |trans}}</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Stock</th>
-                <th>Photo</th>
+                <th>{{'Produit.Nom' |trans}} </th>
+                <th>{{'Produit.Description' |trans}} </th>
+                <th>{{'Produit.Prix' |trans}} </th>
+                <th>{{'Produit.Stock' |trans}} </th>
+                <th>{{'Produit.Photo' |trans}} </th>
                 
             </tr>
         </thead>
@@ -30,12 +29,12 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">Aucun produit existants</td>
+                <td colspan="7">{{'Produit.Aucun' |trans}} </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 {% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('produit_new') }}">Creer un nouveau produit</a>
+    <a href="{{ path('produit_new') }}">{{'Produit.Nouveau' |trans}} </a>
 {% endif %}
 {% endblock %}

@@ -18,10 +18,6 @@ class ContenuPanier
      */
     private $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Produit", inversedBy="contenuPaniers")
-     */
-    private $Produit;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Panier", mappedBy="contenuPanier")
@@ -38,9 +34,14 @@ class ContenuPanier
      */
     private $Date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="ContenuPanier")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $produit;
+
     public function __construct()
     {
-        $this->Produit = new ArrayCollection();
         $this->Panier = new ArrayCollection();
     }
 
@@ -49,31 +50,6 @@ class ContenuPanier
         return $this->id;
     }
 
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduit(): Collection
-    {
-        return $this->Produit;
-    }
-
-    public function addProduit(Produit $produit): self
-    {
-        if (!$this->Produit->contains($produit)) {
-            $this->Produit[] = $produit;
-        }
-
-        return $this;
-    }
-
-    public function removeProduit(Produit $produit): self
-    {
-        if ($this->Produit->contains($produit)) {
-            $this->Produit->removeElement($produit);
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Panier[]
@@ -126,6 +102,18 @@ class ContenuPanier
     public function setDate(\DateTimeInterface $Date): self
     {
         $this->Date = $Date;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }

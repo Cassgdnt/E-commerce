@@ -3,40 +3,40 @@
 {% block title %}Produit{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
+    <h1>{{'Produit.Produit'|trans}}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Nom</th>
+                <th>{{'Produit.Nom' |trans}} </th>
                 <td>{{ produit.Nom }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>{{'Produit.Description' |trans}} </th>
                 <td>{{ produit.Description }}</td>
             </tr>
             <tr>
-                <th>Prix</th>
+                <th>{{'Produit.Prix' |trans}} </th>
                 <td>{{ produit.Prix }} €</td>
             </tr>
             <tr>
-                <th>Stock</th>
+                <th>{{'Produit.Stock' |trans}} </th>
                 <td>{{ produit.Stock }}</td>
             </tr>
             <tr>
-                <th>Photo</th>
+                <th>{{'Produit.Photo' |trans}} </th>
                 <td><img src="{{ asset('/uploads/' ~ produit.photo) }}"></td>
             </tr>
             <tr>
         </tbody>
     </table>
     {% if is_granted('ROLE_USER') %}
-<button class="btn btn-outline-success">Ajouter le produit au panier</button>
+    <a href="{{path('add', {'id':produit.id})}}">{{'Produit.Ajout' |trans}}</a>
 <br>
     {% endif %}
-<button class="btn btn-outline-secondary"><a href="{{ path('produit_index') }}">Retour à la liste des produits</a></button>
+<button class="btn btn-outline-secondary"><a href="{{ path('produit_index') }}">{{'Produit.Retour' |trans}}</a></button>
 {% if is_granted('ROLE_ADMIN') %}
-    <button class="btn btn-outline-secondary">Editer le produit</button>
+    <button class="btn btn-outline-secondary">{{'Produit.Edit' |trans}}</button>
     {{ include('produit/_delete_form.html.twig') }}
 {% endif %}
 

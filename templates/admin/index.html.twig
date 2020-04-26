@@ -6,10 +6,22 @@
 {% if is_granted('ROLE_SUPERADMIN') %}
 
 <div class="UserListe">
-    <h2>Liste des 10 derniers utilisateurs inscrits :</h2>
+    <h2>{{'Admin.Liste' |trans}} </h2>
     {% for user in users %}
         <ul>
         <li>{{user.Nom}} {{user.Prenom}} / {{user.email}}</li>
+        </ul>
+    {% endfor %}
+    {% for panier in paniers %}
+    <pre>
+        {{ dump(panier) }}
+    </pre>
+        <ul>
+            <li>{{panier.Utilisateur.Nom}}{% if panier.Etat == false %}
+                <p>Panier non payé<p> 
+                {% else %}
+                <p>Panier payé<p> 
+                {% endif %}</li>
         </ul>
     {% endfor %}
 </div>

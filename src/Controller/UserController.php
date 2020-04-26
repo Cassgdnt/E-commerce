@@ -13,7 +13,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use App\Security\UserAuthenticator;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+/**
+ * @Route("/{_locale}")
+ */
 class UserController extends AbstractController
 {
     /**

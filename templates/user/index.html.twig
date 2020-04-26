@@ -5,9 +5,9 @@
 {% block body %}
 
 <div class="Profil">
-    <h2>Nom : {{user.nom}}</h2>
-    <h2>Prenom : {{user.prenom}}</h2>
-    <p>Email : {{user.email}}</p>
+    <h2>{{'Profil.Nom'|trans}} {{user.nom}}</h2>
+    <h2>{{'Profil.Prenom'|trans}} {{user.prenom}}</h2>
+    <p>{{'Profil.Email'|trans}} {{user.email}}</p>
 </div>
 
 {% endblock %}

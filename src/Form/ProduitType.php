@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -19,7 +20,7 @@ class ProduitType extends AbstractType
             ->add('Prix')
             ->add('Stock')
             ->add('photoProduit', FileType::class, [
-                'label' => 'Drapeau',
+                'label' => 'photo',
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -42,7 +43,7 @@ class ProduitType extends AbstractType
                     ])
                 ],
             ])
-            ->add('contenuPaniers')
+            ->add('save', SubmitType::class)
         ;
     }
 

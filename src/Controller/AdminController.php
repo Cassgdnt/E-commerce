@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\PanierRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,10 +13,12 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin")
      */
-    public function index(UserRepository $userRepository)
-    { 
+    public function index(UserRepository $userRepository, PanierRepository $repoPanier)
+    {   
+        $paniers =$repoPanier->findBy(['Etat'=>false]);
         return $this->render('admin/index.html.twig', [
             'users' => $userRepository->findListUsers(),
+            'paniers'=>$paniers
         ]);
     }
 
@@ -61,4 +64,5 @@ class AdminController extends AbstractController
             'users' => $users
         ]);
     }
+
 }

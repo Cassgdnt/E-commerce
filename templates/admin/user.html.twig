@@ -7,13 +7,13 @@
 }
 </style>
 	{% if users is not empty %}
-	<h2 id="roles">Changer les rôles des utilisateurs :</h2>
+	<h2 id="roles">{{'Admin.Changer' |trans}} </h2>
 		<table border="1">
 			<thead>
 				<tr>
-					<th>Email</th>
-					<th>Roles</th>
-					<th>Action</th>
+					<th>{{'Admin.Email' |trans}} </th>
+					<th>{{'Admin.Roles' |trans}} </th>
+					<th>{{'Admin.Action' |trans}} </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,7 +23,7 @@
 						<td>{{ user.roles|join(', ') }}</td>
 						<td>
 							<button class="btn btn-outline-secondary"><a href="{{ path('editRole', {'id': user.id}) }}">
-								Changer le rôle de l'utilisateur
+								{{'Admin.Btn' |trans}} 
 							</a></button>
 						</td>
 					</tr>
@@ -31,7 +31,7 @@
 			</tbody>
 		</table>
 	{% else %}
-		<p>Il n'y a aucun utilisateur</p>
+		<p>{{'Admin.Aucun' |trans}} </p>
 	{% endif %}
 
 {% endblock %}

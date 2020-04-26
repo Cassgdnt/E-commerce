@@ -55,29 +55,29 @@ img{width: 100px}
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{path('produit_index')}}">Accueil</a>
+                        <a class="nav-link" href="{{path('produit_index')}}">{{'Navbar.Accueil'|trans}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{path('panier_index')}}">Panier</a>
+                        <a class="nav-link" href="{{path('panier_index')}}">{{'Navbar.Panier'|trans}}</a>
                     </li>
                     </ul>
                     <ul class="navbar-nav">
                     <li class="nav-item">
                     {% if app.user is null %}
-        <a class="nav-link" href="{{path('app_login')}}">Connexion</a>
+        <a class="nav-link" href="{{path('app_login')}}">{{'Navbar.Connexion'|trans}}</a>
         <li>
-        <a class="nav-link" href="{{path('app_register')}}">Inscription</a>
+        <a class="nav-link" href="{{path('app_register')}}">{{'Navbar.Inscription'|trans}}</a>
         </li>
         {% else %}
-            <a class="nav-link" href="{{path('app_logout')}}">Déconnexion</a>
+            <a class="nav-link" href="{{path('app_logout')}}">{{'Navbar.Deconnexion'|trans}}</a>
             {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
-            <a class="nav-link" href="{{path('admin')}}">Admin</a>
+            <a class="nav-link" href="{{path('admin')}}">{{'Navbar.Admin'|trans}}</a>
             </li>
             {% endif %}
         {% if is_granted('ROLE_USER') %}
         <li class="nav-item">
-        <a class="nav-link" href="{{path('profil')}}">Profil</a>
+        <a class="nav-link" href="{{path('profil')}}">{{'Navbar.Profil'|trans}}</a>
         </li>
         {% endif %}
         

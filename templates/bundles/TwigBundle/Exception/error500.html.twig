@@ -3,11 +3,11 @@
 {% block body %}
 	<div class="jumbotron">
 	<div class="container text-center">
-	<h1> Oops erreur 500 </h1>
+	<h1>{{'Error.Error500' |trans}}  </h1>
 	<p> <h2>{{ status_code }} - {{ status_text }}</h2> </p>
-	<h3> Cette page ne fonctionne pas </h3>
+	<h3> {{'Error.Message500' |trans}}  </h3>
 	</br>
-	<p> <a href="{{ path ("produit_index") }}" class="btn btn-primary"> Accueil </a> </p>
+	<p> <a href="{{ path ("produit_index") }}" class="btn btn-primary">{{'Error.Retour' |trans}} </a> </p>
 	</div>
 	</div>
 

@@ -3,15 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\ContenuPanier;
+use App\Entity\Panier;
+use App\Entity\Produit;
 use App\Form\ContenuPanierType;
 use App\Repository\ContenuPanierRepository;
+use App\Repository\PanierRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+/**
+ * @Route("/{_locale}")
+ */
 /**
  * @Route("/contenu_panier")
  */
@@ -25,6 +30,25 @@ class ContenuPanierController extends AbstractController
         return $this->render('contenu_panier/index.html.twig', [
             'contenu_paniers' => $contenuPanierRepository->findAll(),
         ]);
+    }
+    /**
+     *@Route("/add/{id}", name="addPanier")
+     */
+    public function ajout(Produit $produit, $id, ProduitRepository $repository, PanierRepository $panierRepo, ContenuPanier $contenuPanier, Request $request): Response
+    {
+        $produit=$repository->find($id);
+        $panier = $panierRepo->findOneBy(['Utilisateur' => $this->getUser(), 'Etat' => false]);
+        $em = $this->getDoctrine()->getManager();
+        if($panier==null){
+            $panier= new Panier;
+            $panier->setEtat(false);
+            $panier->setUtilisateur($this->getUser());
+            $panier->setContenuPanier($contenuPanier);
+            $em->persist($panier);
+        }
+    return $this->render('produit/show.html.twig', [
+        'produit'=>$produit
+    ]);
     }
 
     /**
@@ -45,36 +69,6 @@ class ContenuPanierController extends AbstractController
         }
 
         return $this->render('contenu_panier/new.html.twig', [
-            'contenu_panier' => $contenuPanier,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/ajout/{id}", name="contenu_panier_show", methods={"GET"})
-     */
-    public function show( ContenuPanier $contenuPanier): Response
-    {
-        return $this->render('contenu_panier/show.html.twig', [
-            'contenu_panier' => $contenuPanier,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="contenu_panier_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, ContenuPanier $contenuPanier): Response
-    {
-        $form = $this->createForm(ContenuPanierType::class, $contenuPanier);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('contenu_panier_index');
-        }
-
-        return $this->render('contenu_panier/edit.html.twig', [
             'contenu_panier' => $contenuPanier,
             'form' => $form->createView(),
         ]);

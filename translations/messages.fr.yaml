@@ -1,0 +1,80 @@
+Produit:
+  Produit: "Produit"
+  Liste: "Liste des 10 derniers utilisateurs inscrits :"
+  Nom: "Nom"
+  Description: "Description"
+  Prix: "Prix"
+  Stock: "Stock"
+  Photo: "Photo"
+  Aucun: "Aucun produit existant"
+  Nouveau: "Créer un nouveau produit"
+  Edit: "Editer le produit"
+  Retour: "Retour à la liste des produits"
+  Ajout: "Ajouter au panier"
+  Supprimer: "Supprimer le produit"
+
+Panier:
+  Titre: "Liste des produit dans le panier"
+  Nom: "Nom"
+  Quantite: "Quantité"
+  Prix: "Prix"
+  Montant: "Montant total"
+  Supprimer: "Supprimer le produit"
+  Aucun: "Aucun produit dans le panier "
+  Achat: "Payer"
+  Utilisateur: "Panier de :"
+
+
+Admin:
+  Liste: "Liste des 10 derniers utilisateurs inscrits :"
+  Changer: "Changer les rôles des utilisateurs :"
+  Email: "Email"
+  Roles: "Rôles"
+  Action: "Action"
+  Btn: "Changer le rôle de l'utilisateur"
+  Aucun: "Il n'y a aucun utilisateur"
+  Retour: "Accueil"
+
+
+Error:
+  Titre: "Oops erreur"
+  Message: "Une erreur est survenue, merci de réessayer ultérieurement."
+  Retour: "Retour à l'accueil"
+  Droit: "Vous n'avez pas le droit d'être là"
+  Error403: "Oops erreur 403"
+  Error404: "Oops erreur 404"
+  Message404: "Cette page est introuvable"
+  Error500: "Oops erreur 500"
+  Message500: "Cette page ne fonctionne pas"
+
+
+h1_register: 'Créer un compte'
+
+Email: 'E-mail'
+Plain password: 'Mot de passe'
+Agree terms: 'Accepter les termes'
+
+creer_register: 'Créer'
+
+phraseLog_login: ' Vous êtes connecté en tant que '
+phraseLogout_login: 'Se déconnecter'
+
+h1_login: "S'il vous plait, connectez vous"
+email_login: 'Rentrez un E-mail'
+mdp_login: 'Rentrez un mot de passe'
+connection_login: 'Se connecter'
+
+Profil:
+  Nom: "Nom : "
+  Prenom: "Prenom :"
+  Email: "Email :"
+
+Navbar:
+  Accueil: "Accueil"
+  Panier: "Panier"
+  Connexion: "Connexion"
+  Inscription: "Inscription"
+  Déconnexion: "Déconnexion"
+  Admin: "Admin"
+  Profil: "Profil"
+

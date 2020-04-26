@@ -20,10 +20,6 @@
                 <td>{{ contenu_panier.id }}</td>
                 <td>{{ contenu_panier.Quantite }}</td>
                 <td>{{ contenu_panier.Date ? contenu_panier.Date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('contenu_panier_show', {'id': contenu_panier.id}) }}">show</a>
-                    <a href="{{ path('contenu_panier_edit', {'id': contenu_panier.id}) }}">edit</a>
-                </td>
             </tr>
         {% else %}
             <tr>
@@ -32,6 +28,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('contenu_panier_new') }}">Create new</a>
 {% endblock %}

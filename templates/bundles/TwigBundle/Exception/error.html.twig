@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<h1>Oops erreur</h1>
-	<p>Une erreur est survenue, merci de réessayer ultérieurement.</p>
-	<p><a href="{{ path('produit_index') }}">Retour à l'accueil</a></p>
+	<h1>{{'Error.Titre' |trans}} </h1>
+	<p>{{'Error.Message' |trans}}</p>
+	<p><a href="{{ path('produit_index') }}">{{'Error.Retour' |trans}} </a></p>
 
 	<div class="jumbotron">
 	<div class="container text-center">
-	<h1> Oops erreur 403 </h1>
+	<h1> {{'Error.Error403' |trans}}  </h1>
 	<p> <h2>{{ status_code }} - {{ status_text }}</h2> </p>
-	<h3> Vous n'avez pas le droit d'être là </h3>
+	<h3> {{'Error.Droit' |trans}}  </h3>
 	<p> <a href="{{ path ("produit_index") }}" class="btn btn-primary"> Home </a> </p>
 	</div>
 	</div>

@@ -1,0 +1,78 @@
+Produit:
+  Produit: "Product"
+  Liste: "List of the last 10 registered users :"
+  Nom: "Name"
+  Description: "Description"
+  Prix: "Price"
+  Stock: "Stock"
+  Photo: "Photo"
+  Aucun: "no existing product"
+  Nouveau: "Create a new product"
+  Edit: "Edit the product"
+  Retour: "Return to the product list"
+  Ajout: "Add to cart"
+  Supprimer: "Delete the product"
+
+Panier:
+  Titre: "List of products in the cart"
+  Nom: "Name"
+  Quantite: "Quantity"
+  Prix: "Price"
+  Montant: "Montant total"
+  Supprimer: "Delete the product"
+  Aucun: "No product in the cart "
+  Achat: "Buy"
+  Utilisateur: "Cart of :"
+
+
+Admin:
+  Liste: "List of the last 10 registered users :"
+  Changer: "Change user roles"
+  Email: "Email"
+  Roles: "role"
+  Action: "Action"
+  Btn: "Change user role"
+  Aucun: "There are no users"
+
+
+Error:
+  Titre: "Oops error"
+  Message: "An error occured please try again later"
+  Retour: "Back to home"
+  Droit: "you are not allowed to be there"
+  Error403: "Oops error 403"
+  Error404: "Oops error 404"
+  Message404: "This page cannot be found"
+  Error500: "Oops error 500"
+  Message500: "This page is not working"
+
+h1_register: 'Create Account'
+
+Email: 'E-mail'
+Plain password: 'Password'
+Agree terms: 'Agree terms'
+
+creer_register: 'Create'
+
+# /login 
+phraseLog_login: 'You are logged in as'
+phraseLogout_login: 'Logout'
+
+h1_login: 'Please Sign-in'
+email_login: 'Fill in an E-mail adress'
+mdp_login: 'Fill in a Password'
+connection_login: 'Login'
+
+Profil:
+  Nom: "Last name :"
+  Prenom: "First Name :"
+  Email: "Email :"
+
+Navbar:
+  Accueil: "Home"
+  Panier: "Cart"
+  Connexion: "Login"
+  Inscription: "Register"
+  Deconnexion: "Logout"
+  Admin: "Admin"
+  Profil: "Profile"
