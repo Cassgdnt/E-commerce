@@ -9,5 +9,6 @@
     <h2>{{'Profil.Prenom'|trans}} {{user.prenom}}</h2>
     <p>{{'Profil.Email'|trans}} {{user.email}}</p>
 </div>
+<a href="{{path('editProfil', {id:app.user.id})}}" class="btn btn-primary">Modifier mes informations</a>
 
 {% endblock %}
